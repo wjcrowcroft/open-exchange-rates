@@ -1,1 +1,8 @@
 .DS_Store
+*.user
+*.suo
+bin
+obj
+
+packages
+*.ncrunchsolution
