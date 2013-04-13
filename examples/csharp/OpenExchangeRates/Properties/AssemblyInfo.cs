@@ -3,7 +3,11 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("OpenExchangeRates")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
+#if DEBUG
+[assembly: AssemblyConfiguration("Debug")]
+#else
+[assembly: AssemblyConfiguration("Release")]
+#endif
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("OpenExchangeRates")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
