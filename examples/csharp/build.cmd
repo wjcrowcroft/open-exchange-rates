@@ -11,4 +11,4 @@ IF '%1'=='' (SET configuration=Release) ELSE (SET configuration=%1)
 
 IF NOT ERRORLEVEL 0 EXIT /B %ERRORLEVEL%
 
-.nuget\nuget.exe pack OpenExchangeRates.1.0.0.nuspec
+.nuget\nuget.exe pack OpenExchangeRates.nuspec

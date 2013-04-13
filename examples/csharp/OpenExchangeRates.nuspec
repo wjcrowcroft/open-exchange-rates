@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>OpenExchangeRates</id>
-		<version>1.0.0</version>
+		<version>1.1.0</version>
 		<title>Open Exchange Rates client</title>
 		<authors>rsmits</authors>
 		<owners>rsmits</owners>
