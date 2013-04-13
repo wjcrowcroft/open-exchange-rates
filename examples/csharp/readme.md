@@ -26,3 +26,10 @@ Convert currency base
 	var exchangeRateData = OpenExchangeRates.Client.Get(DateTime.Now.AddDays(-7));
 	var euroBasedExchangeRateData = exchangeRateData.ConvertBase("EUR"); 
 	// Perform a massive ammount of EUR related currency conversions.
+
+Usage
+===
+
+You can either build the solution by executing `build.cmd` or by installing it via nuget:
+
+	PM> Install-Package OpenExchangeRates
