@@ -2,8 +2,12 @@ C# Example for using the Open Exchange Rates API
 ===
 
 This solution builds an assembly which contain some classes that make it super easy to use the Open Exchange Rates api. 
+Configuration
+===
+Make sure that you specify your API key in the appsetting with the key `OpenExchangeRates.ApiKey` or else you will get web exceptions.
 
-
+Examples
+===
 Retrieve latest exchanges rates 
 ---
 
