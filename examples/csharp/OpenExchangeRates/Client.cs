@@ -12,8 +12,9 @@ namespace OpenExchangeRates
 	public class Client
 	{
 		static readonly string ApiKey = ConfigurationManager.AppSettings["OpenExchangeRates.ApiKey"];
-		static readonly string LatestUrl = "https://openexchangerates.org/api/latest.json?app_id=" + ApiKey;
-		static readonly string HistoryUrl = "https://openexchangerates.org/api/historical/{0:yyyy-MM-dd}.json?app_id=" + ApiKey;
+		static readonly bool UseSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["OpenExchangeRates.UseSSL"]);
+		static readonly string LatestUrl = (UseSSL ? "https" : "http") + "://openexchangerates.org/api/latest.json?app_id=" + ApiKey;
+		static readonly string HistoryUrl = (UseSSL ? "https" : "http") + "://openexchangerates.org/api/historical/{0:yyyy-MM-dd}.json?app_id=" + ApiKey;
 
 		/// <summary>
 		/// Retrieve the latest exchange rate data structure.
