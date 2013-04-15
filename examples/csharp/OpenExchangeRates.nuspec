@@ -7,6 +7,7 @@
 		<authors>rsmits</authors>
 		<owners>rsmits</owners>
 		<projectUrl>https://github.com/ramonsmits/open-exchange-rates/tree/master/examples/csharp</projectUrl>
+		<licenseUrl>http://creativecommons.org/licenses/by-sa/3.0/</licenseUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Access the open exhange rates api via .net via a simple client that converts to json response to a type-safe data structure.</description>
 		<summary>A client to request exchange rates from openexchangerates.org</summary>
