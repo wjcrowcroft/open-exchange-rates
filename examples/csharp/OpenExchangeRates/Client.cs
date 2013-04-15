@@ -6,15 +6,14 @@ using Newtonsoft.Json;
 
 namespace OpenExchangeRates
 {
-
 	/// <summary>
 	/// Open exchange rates data fetcher.
 	/// </summary>
 	public class Client
 	{
 		static readonly string ApiKey = ConfigurationManager.AppSettings["OpenExchangeRates.ApiKey"];
-		static readonly string LatestUrl = "http://openexchangerates.org/api/latest.json?app_id=" + ApiKey;
-		static readonly string HistoryUrl = "http://openexchangerates.org/api/historical/{0:yyyy-MM-dd}.json?app_id=" + ApiKey;
+		static readonly string LatestUrl = "https://openexchangerates.org/api/latest.json?app_id=" + ApiKey;
+		static readonly string HistoryUrl = "https://openexchangerates.org/api/historical/{0:yyyy-MM-dd}.json?app_id=" + ApiKey;
 
 		/// <summary>
 		/// Retrieve the latest exchange rate data structure.
