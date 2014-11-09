@@ -11,10 +11,12 @@ namespace OpenExchangeRates
 	/// </summary>
 	public class Client
 	{
-		static readonly string ApiKey = ConfigurationManager.AppSettings["OpenExchangeRates.ApiKey"];
+		private const string ApiKeySetting = "OpenExchangeRates.ApiKey";
+		static readonly string ApiKey = ConfigurationManager.AppSettings[ApiKeySetting];
 		static readonly bool UseSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["OpenExchangeRates.UseSSL"]);
 		static readonly string LatestUrl = (UseSSL ? "https" : "http") + "://openexchangerates.org/api/latest.json?app_id=" + ApiKey;
 		static readonly string HistoryUrl = (UseSSL ? "https" : "http") + "://openexchangerates.org/api/historical/{0:yyyy-MM-dd}.json?app_id=" + ApiKey;
+		static readonly bool ApiKeyMissing = string.IsNullOrEmpty(ApiKey);
 
 		/// <summary>
 		/// Retrieve the latest exchange rate data structure.
@@ -24,6 +26,8 @@ namespace OpenExchangeRates
 		/// <returns>An <see cref="ExchangeRateData"/> instance.</returns>
 		public static ExchangeRateData Get(IEnumerator<string> symbols = null, string baseCurrency = null)
 		{
+			if (ApiKeyMissing) throw new InvalidOperationException("AppSetting '" + ApiKeySetting + "' is missing. A valid value is required in order to use openexchangerates.org.");
+
 			var url = LatestUrl;
 			if (symbols != null) url += "&symbols=" + string.Join(",", symbols);
 			if (baseCurrency != null) url += "&base=" + baseCurrency;
@@ -43,6 +47,8 @@ namespace OpenExchangeRates
 		/// <returns>An <see cref="ExchangeRateData"/> instance.</returns>
 		public static ExchangeRateData Get(DateTime date, IEnumerator<string> symbols = null, string baseCurrency = null)
 		{
+			if (ApiKeyMissing) throw new InvalidOperationException("AppSetting '" + ApiKeySetting + "' is missing. A valid value is required in order to use openexchangerates.org.");
+
 			var url = string.Format(HistoryUrl, date);
 			if (symbols != null) url += "&symbols=" + string.Join(",", symbols);
 			if (baseCurrency != null) url += "&base=" + baseCurrency;
