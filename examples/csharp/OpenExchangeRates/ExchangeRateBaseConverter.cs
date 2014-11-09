@@ -10,6 +10,10 @@ namespace OpenExchangeRates
 	public static class ExchangeRateBaseConverter
 	{
 		/// <summary>
+		/// The precision of conversion rates returned in the json data of openexchangerates.org
+		/// </summary>
+		private const int OpenExchangeRoundingPrecision = 6;
+		/// <summary>
 		/// Convert a supplied <see cref="ExchangeRateData"/> to a new base currency.
 		/// </summary>
 		/// <param name="oldRates">The currency exchange rate to convert.</param>
@@ -30,7 +34,7 @@ namespace OpenExchangeRates
 			foreach (var i in oldRates.Rates)
 			{
 				var rate = i.Value / x;
-				if (rounding) rate = decimal.Round(rate, 6);
+				if (rounding) rate = decimal.Round(rate, OpenExchangeRoundingPrecision);
 				newRates.Rates[i.Key] = rate;
 			}
 
