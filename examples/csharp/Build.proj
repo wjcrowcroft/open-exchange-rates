@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build"
+				 xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\.build</MSBuildCommunityTasksPath>
+	</PropertyGroup>
+
+	<Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets"/>
+
+	<PropertyGroup>
+		<Major>0</Major>
+		<Minor>0</Minor>
+		<Build>0</Build>
+		<Revision>0</Revision>
+	</PropertyGroup>
+
+	<!-- Version Number -->
+	<PropertyGroup>
+		<Version>$(Major).$(Minor).0.$(Build)</Version>
+		<FileVersion>$(Major).$(Minor).$(Build)</FileVersion>
+		<InformationalVersion>$(Major).$(Minor).$(Build).$(Revision)</InformationalVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(BuildConfiguration)' == '' ">
+		<BuildConfiguration>Release</BuildConfiguration>
+	</PropertyGroup>
+
+	<Target Name="Clean">
+		<DeleteTree Directories="**\obj\**;**\bin\**" />
+	</Target>
+
+	<Target Name="Version">
+		<Time>
+			<Output TaskParameter="Month"
+							PropertyName="Month" />
+			<Output TaskParameter="Day"
+							PropertyName="Day" />
+			<Output TaskParameter="Year"
+							PropertyName="Year" />
+		</Time>
+
+		<Attrib Files="$(MSBuildProjectDirectory)\GlobalAssemblyInfo.cs"
+						ReadOnly="False" />
+
+		<AssemblyInfo CodeLanguage="CS"
+									OutputFile="GlobalAssemblyInfo.cs"
+									AssemblyCopyright="Copyright © $(Year). License CC BY-SA"
+									AssemblyConfiguration="$(Configuration) ($(Year)-$(Month)-$(Day))"
+									AssemblyInformationalVersion="$(InformationalVersion)"
+									AssemblyVersion="$(Version)"
+									AssemblyFileVersion="$(FileVersion)"/>
+	</Target>
+
+	<!-- Projects to Build -->
+	<ItemGroup>
+		<ProjectFiles Include="$(MSBuildProjectDirectory)\**\*.sln">
+			<Properties>Configuration=$(BuildConfiguration)</Properties>
+		</ProjectFiles>
+	</ItemGroup>
+
+	<Target Name="Compile"
+					DependsOnTargets="Clean;Version">
+		<MSBuild Projects="@(ProjectFiles)" />
+	</Target>
+
+	<Target Name="Build">
+		<CallTarget Targets="Compile" />
+	</Target>
+</Project>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>OpenExchangeRates</id>
+		<version>1.1.0</version>
+		<title>Open Exchange Rates client</title>
+		<authors>rsmits</authors>
+		<owners>rsmits</owners>
+		<projectUrl>https://github.com/ramonsmits/open-exchange-rates/tree/master/examples/csharp</projectUrl>
+		<licenseUrl>http://creativecommons.org/licenses/by-sa/3.0/</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Access the open exhange rates api via .net via a simple client that converts to json response to a type-safe data structure.</description>
+		<summary>A client to request exchange rates from openexchangerates.org</summary>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System.Configuration" targetFramework="" />
+			<frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework="" />
+		</frameworkAssemblies>
+		<dependencies>
+			<dependency id="Newtonsoft.Json" />
+		</dependencies>
+		<tags>Currencies, Exchange rates, Rates</tags>
+	</metadata>
+	<files>
+		<file src="OpenExchangeRates\bin\Release\OpenExchangeRates.dll" target="lib" />
+	</files>
+</package>
